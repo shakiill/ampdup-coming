@@ -64,24 +64,14 @@
 
             
 
-            <form class="signup-form" id="signup-form" onsubmit="handleSubmit(event)">
-               
-                <div class="input-wrap">
-                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="4" width="20" height="16" rx="3"/>
-                        <path d="M2 7l10 7 10-7"/>
-                    </svg>
-                    <input type="email" id="email-input" placeholder="Your email address" required autocomplete="email">
-                </div>
-                <button type="submit" class="cta-btn" id="cta-btn">
-                    <span class="btn-text"> Join the movement </span>
+            <button class="cta-btn" id="cta-btn" onclick="openLeadModal()">
+                    <span class="btn-text">Join the Movement</span>
                     <span class="btn-arrow">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </span>
-                </button>
-            </form>
+            </button>
 
             <div class="form-note" id="form-note">
               Early access and member benefits, reserved for our first community.
@@ -157,6 +147,92 @@
     <!-- Toast Container -->
     <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
 
+    <!-- Lead Modal -->
+    <div class="lead-modal-backdrop" id="lead-modal-backdrop" onclick="closeLeadModal(event)" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="lead-modal">
+
+            <!-- Header -->
+            <div class="lead-modal-header">
+                <div>
+                    <p class="lead-modal-eyebrow">Early Access</p>
+                    <h2 class="lead-modal-title" id="modal-title">Join the Movement</h2>
+                </div>
+                <button class="lead-modal-close" onclick="closeLeadModal()" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <p class="lead-modal-sub">Be the first to know when Amped Up drops. Exclusive benefits for our founding community.</p>
+
+            <!-- Form -->
+            <form id="lead-form" onsubmit="handleLeadSubmit(event)" novalidate>
+
+                <!-- Name -->
+                <div class="lf-group">
+                    <label class="lf-label" for="lf-name">Full Name</label>
+                    <div class="lf-input-wrap">
+                        <svg class="lf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        <input type="text" id="lf-name" name="name" placeholder="Your full name" required autocomplete="name">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="lf-group">
+                    <label class="lf-label" for="lf-email">Email Address</label>
+                    <div class="lf-input-wrap">
+                        <svg class="lf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>
+                        <input type="email" id="lf-email" name="email" placeholder="your@email.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="lf-group">
+                    <label class="lf-label" for="lf-phone">Phone Number</label>
+                    <div class="lf-input-wrap">
+                        <svg class="lf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <input type="tel" id="lf-phone" name="phone" placeholder="+880 1X XX XXX XXX" autocomplete="tel">
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="lf-group">
+                    <label class="lf-label">Gender</label>
+                    <div class="lf-gender-row">
+                        <label class="lf-gender-opt" id="lf-gender-male">
+                            <input type="radio" name="gender" value="male" checked>
+                            <span class="lf-gender-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="11" r="5"/><path d="M17 6l4-4m0 0h-4m4 0v4"/></svg>
+                                Male
+                            </span>
+                        </label>
+                        <label class="lf-gender-opt" id="lf-gender-female">
+                            <input type="radio" name="gender" value="female">
+                            <span class="lf-gender-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="5"/><path d="M12 15v7M9 19h6"/></svg>
+                                Female
+                            </span>
+                        </label>
+                        <label class="lf-gender-opt" id="lf-gender-other">
+                            <input type="radio" name="gender" value="other">
+                            <span class="lf-gender-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                                Other
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="lf-submit-btn" id="lf-submit-btn">
+                    <span class="btn-text">Secure My Spot</span>
+                    <span class="btn-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                </button>
+
+            </form>
+        </div>
+    </div>
+
     <script>
         // Handle Page Loader
         window.addEventListener('load', () => {
@@ -225,39 +301,62 @@
             toast.addEventListener('transitionend', () => toast.remove(), { once: true });
         }
 
-        // ── Form Submit ───────────────────────────────────────────────
-        async function handleSubmit(e) {
+        // ── Modal Controls ────────────────────────────────────────────
+        function openLeadModal() {
+            const backdrop = document.getElementById('lead-modal-backdrop');
+            backdrop.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => document.getElementById('lf-name').focus(), 300);
+        }
+
+        function closeLeadModal(e) {
+            // Close only when clicking the backdrop itself, not the modal card
+            if (e && e.target !== document.getElementById('lead-modal-backdrop')) return;
+            _dismissModal();
+        }
+
+        function _dismissModal() {
+            document.getElementById('lead-modal-backdrop').classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') _dismissModal(); });
+
+        // ── Lead Form Submit ──────────────────────────────────────────
+        async function handleLeadSubmit(e) {
             e.preventDefault();
-            const emailInput = document.getElementById('email-input');
-            const btn = document.getElementById('cta-btn');
-            const email = emailInput.value.trim();
+            const btn = document.getElementById('lf-submit-btn');
+
+            const name   = document.getElementById('lf-name').value.trim();
+            const email  = document.getElementById('lf-email').value.trim();
+            const phone  = document.getElementById('lf-phone').value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked')?.value || '';
 
             // Loading state
             btn.disabled = true;
-            btn.querySelector('.btn-text').textContent = 'Joining...';
+            btn.querySelector('.btn-text').textContent = 'Submitting...';
 
             try {
                 const res = await fetch('https://ecom.foritbd.com/api/v1/coming-lead/', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({ email })
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ name, email, phone, gender })
                 });
 
                 if (!res.ok) {
                     let errMsg = 'Something went wrong. Please try again.';
                     try {
                         const d = await res.json();
-                        // Handle DRF field-level errors e.g. {"email": ["..."]}
-                        if (d.email) errMsg = Array.isArray(d.email) ? d.email[0] : d.email;
-                        else errMsg = d.message || d.detail || errMsg;
+                        // DRF returns field-level errors as arrays
+                        const first = d.email?.[0] || d.name?.[0] || d.phone?.[0] || d.non_field_errors?.[0];
+                        errMsg = first || d.message || d.detail || errMsg;
                     } catch(_) {}
                     throw new Error(errMsg);
                 }
 
-                document.getElementById('signup-form').reset();
+                _dismissModal();
+                document.getElementById('lead-form').reset();
                 showToast({
                     type: 'success',
                     title: "You're In! 🔥",
@@ -271,7 +370,7 @@
                 });
             } finally {
                 btn.disabled = false;
-                btn.querySelector('.btn-text').textContent = 'Join Now';
+                btn.querySelector('.btn-text').textContent = 'Secure My Spot';
             }
         }
 
@@ -287,7 +386,7 @@
                 if (entry.isIntersecting) entry.target.classList.add('revealed');
             });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.badge-row, .hero-title, .hero-sub, .signup-form, .form-note, .stats-row, .hero-right').forEach(el => {
+        document.querySelectorAll('.badge-row, .hero-title, .hero-sub, .cta-btn, .form-note, .stats-row, .hero-right').forEach(el => {
             el.classList.add('reveal');
             observer.observe(el);
         });
