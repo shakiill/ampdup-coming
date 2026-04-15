@@ -154,17 +154,8 @@
         </div>
     </footer>-->
 
-    <!-- Success overlay -->
-    <div class="success-overlay" id="success-overlay">
-        <div class="success-card">
-            <img src="motive.png" alt="" class="success-icon">
-            <h2>You're In.</h2>
-            <p>We'll let you know the moment Amped Up drops. Get ready.</p>
-            <button onclick="closeSuccess()" class="cta-btn" id="close-success-btn">
-                <span class="btn-text">Got It</span>
-            </button>
-        </div>
-    </div>
+    <!-- Toast Container -->
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
 
     <script>
         // Handle Page Loader
@@ -184,15 +175,96 @@
             motive.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        // Form submit
-        function handleSubmit(e) {
-            e.preventDefault();
-            document.getElementById('success-overlay').classList.add('visible');
-            document.getElementById('signup-form').reset();
+        // ── Toast System ──────────────────────────────────────────────
+        function showToast({ type = 'success', title, message, duration = 5000 }) {
+            const container = document.getElementById('toast-container');
+            const id = 'toast-' + Date.now();
+
+            const icons = {
+                success: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>`,
+                error:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>`,
+                info:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="currentColor"/></svg>`
+            };
+
+            const toast = document.createElement('div');
+            toast.id = id;
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-icon">${icons[type]}</div>
+                <div class="toast-body">
+                    <p class="toast-title">${title}</p>
+                    <p class="toast-msg">${message}</p>
+                </div>
+                <button class="toast-close" onclick="dismissToast('${id}')" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+                <div class="toast-progress"></div>
+            `;
+            container.appendChild(toast);
+
+            // Animate progress bar
+            const bar = toast.querySelector('.toast-progress');
+            bar.style.transition = `width ${duration}ms linear`;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => { bar.style.width = '0%'; });
+            });
+
+            // Trigger entry animation
+            requestAnimationFrame(() => toast.classList.add('toast-show'));
+
+            const timer = setTimeout(() => dismissToast(id), duration);
+            toast._timer = timer;
         }
 
-        function closeSuccess() {
-            document.getElementById('success-overlay').classList.remove('visible');
+        function dismissToast(id) {
+            const toast = document.getElementById(id);
+            if (!toast) return;
+            clearTimeout(toast._timer);
+            toast.classList.remove('toast-show');
+            toast.classList.add('toast-hide');
+            toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+        }
+
+        // ── Form Submit ───────────────────────────────────────────────
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('email-input');
+            const btn = document.getElementById('cta-btn');
+            const email = emailInput.value.trim();
+
+            // Loading state
+            btn.disabled = true;
+            btn.querySelector('.btn-text').textContent = 'Joining...';
+
+            try {
+                const res = await fetch('https://ecom.foritbd.com/api/v1/coming-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!res.ok) {
+                    let errMsg = 'Something went wrong. Please try again.';
+                    try { const d = await res.json(); errMsg = d.message || d.detail || errMsg; } catch(_) {}
+                    throw new Error(errMsg);
+                }
+
+                document.getElementById('signup-form').reset();
+                showToast({
+                    type: 'success',
+                    title: "You're In! 🔥",
+                    message: "We'll notify you the moment Amped Up drops. Stay ready."
+                });
+            } catch (err) {
+                showToast({
+                    type: 'error',
+                    title: 'Submission Failed',
+                    message: err.message || 'Please check your connection and try again.'
+                });
+            } finally {
+                btn.disabled = false;
+                btn.querySelector('.btn-text').textContent = 'Join Now';
+            }
         }
 
         // Navbar scroll effect
