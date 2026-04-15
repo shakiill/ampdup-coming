@@ -215,8 +215,6 @@ body {
 .nav-logo {
     height: 30px;
     width: auto;
-    /* Invert to white style — logo on dark bg */
-    filter: brightness(0) invert(1);
     transition: filter var(--dur) var(--ease), transform var(--dur) var(--ease);
     cursor: pointer;
 }
