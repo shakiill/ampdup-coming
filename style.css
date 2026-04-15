@@ -221,10 +221,10 @@ body {
     cursor: pointer;
 }
 
-.nav-logo:hover {
+/* .nav-logo:hover {
     filter: brightness(0) saturate(100%) invert(84%) sepia(94%) saturate(748%) hue-rotate(17deg) brightness(101%) contrast(106%);
     transform: scale(1.04);
-}
+} */
 
 .nav-links {
     display: flex;
