@@ -441,7 +441,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    /* background: var(--brand-gradient); */
+    background: var(--brand-gradient);
     color: var(--black);
     border: none;
     padding: 1.1rem 1.8rem;
@@ -900,9 +900,17 @@ body {
     border-radius: 10px 0 0 10px;
 }
 
-.toast-success::before { background: var(--brand); }
-.toast-error::before   { background: #f04040; }
-.toast-info::before    { background: #4b9cf5; }
+.toast-success::before {
+    background: var(--brand);
+}
+
+.toast-error::before {
+    background: #f04040;
+}
+
+.toast-info::before {
+    background: #4b9cf5;
+}
 
 /* Icon */
 .toast-icon {
@@ -917,9 +925,17 @@ body {
     height: 100%;
 }
 
-.toast-success .toast-icon { color: var(--brand); }
-.toast-error   .toast-icon { color: #f04040; }
-.toast-info    .toast-icon { color: #4b9cf5; }
+.toast-success .toast-icon {
+    color: var(--brand);
+}
+
+.toast-error .toast-icon {
+    color: #f04040;
+}
+
+.toast-info .toast-icon {
+    color: #4b9cf5;
+}
 
 /* Body */
 .toast-body {
@@ -977,9 +993,17 @@ body {
     border-radius: 0 0 10px 10px;
 }
 
-.toast-success .toast-progress { background: var(--brand); }
-.toast-error   .toast-progress { background: #f04040; }
-.toast-info    .toast-progress { background: #4b9cf5; }
+.toast-success .toast-progress {
+    background: var(--brand);
+}
+
+.toast-error .toast-progress {
+    background: #f04040;
+}
+
+.toast-info .toast-progress {
+    background: #4b9cf5;
+}
 
 /* Responsive */
 @media (max-width: 540px) {
