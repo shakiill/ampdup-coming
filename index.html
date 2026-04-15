@@ -237,25 +237,22 @@
             btn.querySelector('.btn-text').textContent = 'Joining...';
 
             try {
-                const formData = new FormData();
-                formData.append('email', email);
-
-                const res = await fetch('https://ecom.foritbd.com/api/v1/coming-lead', {
+                const res = await fetch('https://ecom.foritbd.com/api/v1/coming-lead/', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
                 });
 
                 if (!res.ok) {
                     let errMsg = 'Something went wrong. Please try again.';
                     try {
-                        const contentType = res.headers.get('content-type') || '';
-                        if (contentType.includes('application/json')) {
-                            const d = await res.json();
-                            errMsg = d.message || d.detail || d.email?.[0] || errMsg;
-                        } else {
-                            const text = await res.text();
-                            if (text) errMsg = text;
-                        }
+                        const d = await res.json();
+                        // Handle DRF field-level errors e.g. {"email": ["..."]}
+                        if (d.email) errMsg = Array.isArray(d.email) ? d.email[0] : d.email;
+                        else errMsg = d.message || d.detail || errMsg;
                     } catch(_) {}
                     throw new Error(errMsg);
                 }
