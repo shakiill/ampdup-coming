@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amped Up | More than activewear.</title>
+    <meta name="description" content="Amped Up is a modern brand driven by discipline, refined design and a strong sense of community. Created for those who move with purpose. Born in Bangladesh. Made for the world.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loader -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-content">
+            <img src="mini-logo.svg" alt="" class="loader-logo">
+            <div class="loader-bar-bg">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Background -->
+    <div class="video-bg">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <!-- Noise texture overlay -->
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Top Nav Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <img src="motive.png"  alt="Amped Up" class="nav-logo" id="nav-logo">
+            <div class="nav-links">
+                <a href="#" class="nav-link">Story</a>
+                <a href="#" class="nav-link">Vision</a>
+                <a href="#" class="nav-link notify-btn" id="nav-notify-btn">Get Notified</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="hero" id="hero">
+
+        <!-- Left column: text content -->
+        <div class="hero-left">
+
+           
+            <h1 class="hero-title" id="hero-title">
+                <!-- <span class="title-line">More   <span class="gradiant-accent">than</span>  </span>  -->
+               <!--  <span class="title-line">activewear.</span>  -->
+                
+                <span class="title-line">MOVE LOUD.</span>
+            </h1>
+
+            <p class="hero-sub" id="hero-sub">
+                A mindset defined by <strong>performance</strong> and intent. Crafted for those who move with discipline, driven by a community that demands more.
+            </p>
+
+             <h2> Join the movement befor we launch</h3>
+
+            <form class="signup-form" id="signup-form" onsubmit="handleSubmit(event)">
+               
+                <div class="input-wrap">
+                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="3"/>
+                        <path d="M2 7l10 7 10-7"/>
+                    </svg>
+                    <input type="email" id="email-input" placeholder="Your email address" required autocomplete="email">
+                </div>
+                <button type="submit" class="cta-btn" id="cta-btn">
+                    <span class="btn-text"> Join Now </span>
+                    <span class="btn-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </button>
+            </form>
+
+            <div class="form-note" id="form-note">
+              Early access and member benefits, reserved for our first community.
+            </div>
+
+             <div class="badge-row" id="badge-row">
+                <span class="badge-pill" id="badge-pill">
+                    <span class="badge-dot"></span>
+                    Coming Soon
+                </span>
+                <span class="badge-origin">Born in Bangladesh &bull; Made for the World</span>
+            </div>
+
+
+            <!-- Stats row
+            <div class="stats-row" id="stats-row">
+                <div class="stat">
+                    <span class="stat-num">2026</span>
+                    <span class="stat-label">Founded</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Performance Driven</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-num">∞</span>
+                    <span class="stat-label">Community</span>
+                </div>
+            </div> -->
+        </div>
+
+        <!-- Right column: motive mark -->
+        <div class="hero-right" id="hero-right">
+            <div class="motive-wrap" id="motive-wrap">
+                <img src="motive-trn.png" alt="Amped Up Mark" class="motive-img" id="motive-img">
+                <div class="motive-glow"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+     <!--<footer class="footer" id="footer">
+        <div class="footer-left">
+            <span class="footer-copy">&copy; 2026 Amped Up. All rights reserved.</span>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-link" id="social-instagram" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+                </svg>
+                Instagram
+            </a>
+            <a href="#" class="social-link" id="social-facebook" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+                Facebook
+            </a>
+            <a href="#" class="social-link" id="social-tiktok" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                </svg>
+                TikTok
+            </a>
+        </div>
+    </footer>-->
+
+    <!-- Success overlay -->
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-card">
+            <img src="motive.png" alt="" class="success-icon">
+            <h2>You're In.</h2>
+            <p>We'll let you know the moment Amped Up drops. Get ready.</p>
+            <button onclick="closeSuccess()" class="cta-btn" id="close-success-btn">
+                <span class="btn-text">Got It</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Handle Page Loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.classList.add('hidden');
+        });
+
+        // Playback rate
+        document.getElementById('bgVideo').playbackRate = 0.75;
+
+        // Scroll parallax on motive
+        const motive = document.getElementById('motive-wrap');
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 18;
+            const y = (e.clientY / window.innerHeight - 0.5) * 18;
+            motive.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // Form submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('success-overlay').classList.add('visible');
+            document.getElementById('signup-form').reset();
+        }
+
+        function closeSuccess() {
+            document.getElementById('success-overlay').classList.remove('visible');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Intersection observer for stagger reveal
+        const reveals = document.querySelectorAll('[id]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('revealed');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.badge-row, .hero-title, .hero-sub, .signup-form, .form-note, .stats-row, .hero-right').forEach(el => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
